@@ -1,0 +1,458 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Flight Attendant Interview - Customer Service & Conflict</title>
+    <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background: linear-gradient(135deg, #a8d8ea 0%, #fcf6bd 100%);
+            margin: 0;
+            padding: 20px;
+            min-height: 100vh;
+            line-height: 1.6;
+        }
+        
+        .container {
+            background: white;
+            border-radius: 15px;
+            padding: 30px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+            max-width: 900px;
+            margin: 0 auto;
+        }
+        
+        .header {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+        
+        .logo {
+            margin-bottom: 15px;
+        }
+        
+        .wing {
+            color: #ff8c00;
+            font-weight: 800;
+            font-size: 2em;
+            letter-spacing: 1px;
+            font-family: 'Nunito', sans-serif;
+        }
+        
+        .sky {
+            color: #666;
+            font-weight: 800;
+            font-size: 2em;
+            letter-spacing: 1px;
+            font-family: 'Nunito', sans-serif;
+        }
+        
+        .class-title {
+            font-size: 1.1em;
+            color: #28a745;
+            font-weight: bold;
+            margin-bottom: 10px;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+        
+        .main-title {
+            color: #333;
+            margin-bottom: 20px;
+            font-size: 2.5em;
+            background: linear-gradient(135deg, #a8d8ea, #fcf6bd);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            font-weight: 800;
+        }
+        
+        .topic-header {
+            background: linear-gradient(45deg, #a8d8ea, #fcf6bd);
+            padding: 20px;
+            border-radius: 10px;
+            margin-bottom: 30px;
+            text-align: center;
+        }
+        
+        .topic-number {
+            font-size: 1.8em;
+            font-weight: bold;
+            color: #333;
+            margin-bottom: 10px;
+        }
+        
+        .question-section {
+            margin-bottom: 35px;
+        }
+        
+        .question-header {
+            background: var(--question-color);
+            color: white;
+            padding: 15px 25px;
+            border-radius: 10px;
+            font-weight: bold;
+            font-size: 1.2em;
+            margin-bottom: 20px;
+            display: flex;
+            align-items: center;
+        }
+        
+        .question-header.demanding {
+            --question-color: linear-gradient(45deg, #dc3545, #e74c3c);
+        }
+        
+        .question-header.conflict {
+            --question-color: linear-gradient(45deg, #fd7e14, #f39c12);
+        }
+        
+        .question-header.received {
+            --question-color: linear-gradient(45deg, #28a745, #20c997);
+        }
+        
+        .question-header.provided {
+            --question-color: linear-gradient(45deg, #6f42c1, #9c88ff);
+        }
+        
+        .question-icon {
+            font-size: 1.3em;
+            margin-right: 12px;
+        }
+        
+        .answer-container {
+            background: #f8f9fa;
+            border-radius: 10px;
+            padding: 25px;
+            border-left: 5px solid var(--border-color);
+        }
+        
+        .answer-container.demanding {
+            --border-color: #dc3545;
+        }
+        
+        .answer-container.conflict {
+            --border-color: #fd7e14;
+        }
+        
+        .answer-container.received {
+            --border-color: #28a745;
+        }
+        
+        .answer-container.provided {
+            --border-color: #6f42c1;
+        }
+        
+        .sar-method {
+            display: grid;
+            gap: 15px;
+        }
+        
+        .sar-item {
+            background: white;
+            border-radius: 8px;
+            padding: 20px;
+            border-left: 4px solid var(--sar-color);
+        }
+        
+        .sar-item.situation {
+            --sar-color: #007bff;
+        }
+        
+        .sar-item.action {
+            --sar-color: #28a745;
+        }
+        
+        .sar-item.result {
+            --sar-color: #6f42c1;
+        }
+        
+        .sar-header {
+            display: flex;
+            align-items: center;
+            margin-bottom: 12px;
+        }
+        
+        .sar-badge {
+            background: var(--sar-color);
+            color: white;
+            padding: 4px 12px;
+            border-radius: 20px;
+            font-weight: bold;
+            font-size: 0.9em;
+            margin-right: 12px;
+        }
+        
+        .sar-title {
+            font-weight: bold;
+            color: #333;
+            font-size: 1.05em;
+        }
+        
+        .sar-content {
+            color: #555;
+            line-height: 1.7;
+        }
+        
+        .narrative-answer {
+            background: white;
+            border-radius: 8px;
+            padding: 20px;
+            color: #333;
+            line-height: 1.7;
+            border-left: 4px solid var(--border-color);
+        }
+        
+        .key-insights {
+            background: linear-gradient(135d, #d4edda, #c3e6cb);
+            padding: 20px;
+            border-radius: 10px;
+            border-left: 4px solid #28a745;
+            margin: 25px 0;
+        }
+        
+        .key-insights h3 {
+            color: #155724;
+            margin-bottom: 15px;
+            font-size: 1.2em;
+            display: flex;
+            align-items: center;
+        }
+        
+        .insight-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 15px;
+            margin-top: 15px;
+        }
+        
+        .insight-card {
+            background: white;
+            padding: 15px;
+            border-radius: 8px;
+            border-left: 3px solid #28a745;
+        }
+        
+        .insight-title {
+            font-weight: bold;
+            color: #155724;
+            margin-bottom: 8px;
+        }
+        
+        .insight-text {
+            color: #155724;
+            font-size: 0.95em;
+        }
+        
+        .interview-tips {
+            background: linear-gradient(135deg, #fff3cd, #ffeaa7);
+            padding: 20px;
+            border-radius: 10px;
+            border-left: 4px solid #ff8c00;
+            margin: 20px 0;
+        }
+        
+        .interview-tips h3 {
+            color: #856404;
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+        }
+        
+        .tip-icon {
+            margin-right: 8px;
+        }
+        
+        .tips-list {
+            display: grid;
+            gap: 10px;
+        }
+        
+        .tip-item {
+            background: white;
+            padding: 12px;
+            border-radius: 6px;
+            color: #856404;
+            border-left: 3px solid #ff8c00;
+        }
+        
+        @media (max-width: 768px) {
+            .container {
+                padding: 20px;
+                margin: 10px;
+            }
+            
+            .main-title {
+                font-size: 2em;
+            }
+            
+            .topic-number {
+                font-size: 1.5em;
+            }
+            
+            .question-header {
+                font-size: 1.1em;
+                padding: 12px 20px;
+            }
+            
+            .answer-container {
+                padding: 20px;
+            }
+            
+            .insight-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <div class="logo">
+                <span class="wing">WING</span> <span class="sky">SKY</span>
+            </div>
+            <div class="class-title">Sophie's Class</div>
+            <h1 class="main-title">✈️ Flight Attendant Interview</h1>
+        </div>
+        
+        <div class="topic-header">
+            <div class="topic-number">Topic 20: Demanding Customer, Conflict, Service Experience</div>
+        </div>
+        
+        <div class="question-section">
+            <div class="question-header demanding">
+                <span class="question-icon">😤</span>
+                Have you met a demanding customer?
+            </div>
+            
+            <div class="answer-container demanding">
+                <div class="sar-method">
+                    <div class="sar-item situation">
+                        <div class="sar-header">
+                            <div class="sar-badge">S</div>
+                            <div class="sar-title">Situation</div>
+                        </div>
+                        <div class="sar-content">
+                            When I worked at a Guess store, a female customer requested an XS-sized denim jacket, although she appeared to be closer to an L.
+                        </div>
+                    </div>
+                    
+                    <div class="sar-item action">
+                        <div class="sar-header">
+                            <div class="sar-badge">A</div>
+                            <div class="sar-title">Action</div>
+                        </div>
+                        <div class="sar-content">
+                            Wanting to offer a helpful suggestion, I recommended an M size, which unfortunately upset her, as she insisted on the XS. When I brought the XS to her, she threw it at me in frustration before leaving the store.
+                        </div>
+                    </div>
+                    
+                    <div class="sar-item result">
+                        <div class="sar-header">
+                            <div class="sar-badge">R</div>
+                            <div class="sar-title">Result & Learning</div>
+                        </div>
+                        <div class="sar-content">
+                            This experience taught me the importance of respecting a customer's request without making assumptions about their preferences. Now, I am committed to listening carefully to customers' specific requests, ensuring they feel respected and valued.
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="question-section">
+            <div class="question-header conflict">
+                <span class="question-icon">⚡</span>
+                Have you had a conflict with others?
+            </div>
+            
+            <div class="answer-container conflict">
+                <div class="narrative-answer">
+                    While working part-time at McDonald's, I once had a minor conflict with a coworker who often prioritized her own tasks over our shared responsibilities. I tried to accommodate her and understand her perspective, so I took the initiative to have an open conversation with her. I listened to her concerns and shared mine as well, focusing on how teamwork could help both of us work more efficiently. Thankfully, she understood, and we agreed to better communicate and support each other moving forward. The experience taught me the value of patience and open communication in resolving workplace conflicts.
+                </div>
+            </div>
+        </div>
+        
+        <div class="question-section">
+            <div class="question-header received">
+                <span class="question-icon">🌟</span>
+                Have you received good customer service?
+            </div>
+            
+            <div class="answer-container received">
+                <div class="narrative-answer">
+                    I once received exceptional service at a small, modest, and rather noisy meat restaurant. Despite the busy atmosphere, the staff were incredibly attentive, anticipating customers' needs before they even asked. When I accidentally dropped my spoon, or when I needed more soup, they were there immediately, which genuinely surprised me. This experience taught me how impactful proactive and attentive service can be, even in a simple setting. I learned that true customer service is about attentiveness and creating a welcoming experience, regardless of the environment.
+                </div>
+            </div>
+        </div>
+        
+        <div class="question-section">
+            <div class="question-header provided">
+                <span class="question-icon">💝</span>
+                Have you provided good customer service?
+            </div>
+            
+            <div class="answer-container provided">
+                <div class="narrative-answer">
+                    While working part-time at a café where customers usually ordered through a kiosk and picked up their drinks at the counter, I once encountered three elderly customers who called me over to place their order directly at their table. I was initially surprised, but I noticed that they seemed unfamiliar with the self-service system. Wanting to ensure they felt comfortable, I took their order at the table without pointing out the usual process, as it was not a busy time. They appreciated the personal attention, and they even became regular customers afterward. This experience taught me that good customer service is about adapting to the needs of each customer, especially when it helps them feel at ease.
+                </div>
+            </div>
+        </div>
+        
+        <div class="key-insights">
+            <h3>🎯 Key Service Principles from These Examples:</h3>
+            <div class="insight-grid">
+                <div class="insight-card">
+                    <div class="insight-title">Respect Customer Choices</div>
+                    <div class="insight-text">Never make assumptions about customer preferences - always honor their requests</div>
+                </div>
+                
+                <div class="insight-card">
+                    <div class="insight-title">Open Communication</div>
+                    <div class="insight-text">Address conflicts directly through honest dialogue and active listening</div>
+                </div>
+                
+                <div class="insight-card">
+                    <div class="insight-title">Proactive Service</div>
+                    <div class="insight-text">Anticipate needs and act before customers have to ask</div>
+                </div>
+                
+                <div class="insight-card">
+                    <div class="insight-title">Adaptability</div>
+                    <div class="insight-text">Adjust your approach based on individual customer needs and comfort levels</div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="interview-tips">
+            <h3><span class="tip-icon">💡</span>Interview Success Tips:</h3>
+            <div class="tips-list">
+                <div class="tip-item">
+                    <strong>Use real examples:</strong> Share genuine experiences from your work or life that demonstrate your service mindset
+                </div>
+                
+                <div class="tip-item">
+                    <strong>Show learning:</strong> Always explain what the experience taught you and how it changed your approach
+                </div>
+                
+                <div class="tip-item">
+                    <strong>Connect to flight service:</strong> Link your examples to how you'd handle similar situations as a flight attendant
+                </div>
+                
+                <div class="tip-item">
+                    <strong>Demonstrate emotional intelligence:</strong> Show empathy, patience, and understanding in your responses
+                </div>
+                
+                <div class="tip-item">
+                    <strong>Practice storytelling:</strong> Structure your answers clearly with situation, action, and outcome
+                </div>
+                
+                <div class="tip-item">
+                    <strong>Stay positive:</strong> Even when describing difficult situations, focus on positive outcomes and growth
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
